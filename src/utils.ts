@@ -1,11 +1,11 @@
-export const MARKER = '<!-- Sticky Header Marker -->'
+export const MARKER = '<!-- Sticky Footer Marker -->'
 
-export function addHeader(header: string, currentBody: string): string {
+export function upsertFooter(footer: string, currentBody: string): string {
   const regex = new RegExp(`(.*)(${MARKER})\\s*`)
 
   if (currentBody.match(regex)) {
-    return currentBody.replace(regex, `${header}${MARKER}\n\n`)
+    return currentBody.replace(regex, `\n\n${footer}${MARKER}`)
   }
 
-  return `${header}${MARKER}\n\n${currentBody}`
+  return `${currentBody}\n\n${footer}${MARKER}`
 }

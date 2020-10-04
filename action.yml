@@ -1,9 +1,9 @@
-name: 'Pull Request Sticky Header'
-description: 'Keep a custom message on the top of your PR description'
-author: 'lucasmotta'
+name: 'Pull Request Sticky Footer'
+description: 'Keep a concise custom message at the bottom of your PR description. Helps avoid superfluous comments.'
+author: 'kyranjamie'
 inputs:
   header:
-    description: 'Markdown message you want to stick at the top of your PR'
+    description: 'Markdown text you want to stick at the bottom of your PR'
     required: true
   destination_branch:
     description: 'Base branch of the PR. Default is master'

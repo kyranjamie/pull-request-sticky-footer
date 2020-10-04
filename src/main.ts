@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import { addHeader } from './utils'
+import { upsertFooter } from './utils'
 
 async function run(): Promise<void> {
   const pullNumber = github.context.payload.pull_request?.number || 0
@@ -12,7 +12,7 @@ async function run(): Promise<void> {
 
   try {
     const githubToken = core.getInput('github_token', { required: true })
-    const header = core.getInput('header', { required: true })
+    const footer = core.getInput('footer', { required: true })
     const octokit = github.getOctokit(githubToken)
     const repo = github.context.repo
 
@@ -24,7 +24,7 @@ async function run(): Promise<void> {
     const params = {
       ...github.context.repo,
       pull_number: pullNumber,
-      body: addHeader(header, pullRequest?.data?.body),
+      body: upsertFooter(footer, pullRequest?.data?.body),
     }
 
     await octokit.pulls.update(params)
